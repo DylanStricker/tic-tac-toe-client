@@ -37,11 +37,13 @@ const onSignOutSuccess = function () {
   store.user = null
   $('form').trigger('reset')
 }
-const onGameStartSuccess = function ()
+const onGameStartSuccess = function () {
+
+}
 
 const onError = function (error) {
   console.log('your error is', error)
-  $('#current-status').text('Something went Wrong')
+  $('#current-status').text('Something went wrong')
 }
 const onGameError = function (error) {
   console.log('your error is', error)
@@ -54,6 +56,7 @@ module.exports = {
   onSignInSuccess,
   onPChangeSuccess,
   onSignOutSuccess,
-  onGameError
+  onGameError,
+  onGameStartSuccess
 
 }
