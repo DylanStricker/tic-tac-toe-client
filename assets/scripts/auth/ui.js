@@ -1,5 +1,6 @@
 'use strict'
-const store = require('./store')
+const store = require('./../store')
+
 const onSignUpSuccess = function (responseData) {
   console.log('user data', responseData)
   console.log('success!')
@@ -37,14 +38,15 @@ const onSignOutSuccess = function () {
   store.user = null
   $('form').trigger('reset')
 }
-const onGameStartSuccess = function () {
-
-}
 
 const onError = function (error) {
   console.log('your error is', error)
   $('#current-status').text('Something went wrong')
 }
+const onGameStartSuccess = function (responseData) {
+  console.log(responseData)
+}
+
 const onGameError = function (error) {
   console.log('your error is', error)
   $('#game-status').text('Something went Wrong')
@@ -56,7 +58,6 @@ module.exports = {
   onSignInSuccess,
   onPChangeSuccess,
   onSignOutSuccess,
-  onGameError,
-  onGameStartSuccess
-
+  onGameStartSuccess,
+  onGameError
 }

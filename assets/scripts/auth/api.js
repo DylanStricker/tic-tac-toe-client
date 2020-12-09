@@ -1,6 +1,6 @@
 'use strict'
-const store = require('./store')
-const config = require('./config')
+const store = require('./../store')
+const config = require('./../config')
 
 const signUp = function (data) {
   return $.ajax({
@@ -38,10 +38,21 @@ const signOut = function () {
     }
   })
 }
+const gameStart = function (data) {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    data: {},
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   signUp,
   signIn,
   pChange,
-  signOut
+  signOut,
+  gameStart
 }
