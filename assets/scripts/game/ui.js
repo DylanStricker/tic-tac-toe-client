@@ -2,6 +2,8 @@ const store = require('./../store')
 
 const onGameStartSuccess = function (responseData) {
   console.log(responseData)
+  $('#board').show()
+  console.log(store)
 }
 
 const onGameError = function (error) {

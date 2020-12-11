@@ -48,11 +48,80 @@ const gameStart = function (data) {
     }
   })
 }
+// typical format
+// {"game": {
+//      "cells":["","","","","","","","",""],
+//      "over":false,
+//      "_id":"5fd2393817c7750017597c7b",
+//      "owner":"5fd2390917c7750017597c76",
+//      "createdAt":"2020-12-10T15:05:28.737Z",
+//      "updatedAt":"2020-12-10T15:05:28.737Z",
+//      "__v":0}}
+const playTurn = function (target, move) {
+  console.log(store.gameboard)
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.gameboard.game._id,
+    method: 'PATCH',
+    data: {
+      game: {
+        cell: {
+          index: target.dataset.index,
+          value: function () {
+            if (store.turn === false) {
+              return 'x'
+            } else {
+              return 'o'
+            }
+          }
+        },
+
+        over: function () {
+          if (store.overStatus === false) {
+            return store.overStatus
+          } else {
+            return store.overStatus
+          }
+        }
+      }
+    },
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+const gameOver = function () {
+  console.log(store.gameboard)
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.gameboard.game._id,
+    method: 'PATCH',
+    data: {
+      game: {
+        cell: {
+          index: 1,
+          value: 'x'
+        }
+      },
+
+      over: function () {
+        if (store.overStatus === false) {
+          return store.overStatus
+        } else {
+          return store.overStatus
+        }
+      }
+    },
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   signUp,
   signIn,
   pChange,
   signOut,
-  gameStart
+  gameStart,
+  playTurn,
+  gameOver
 }

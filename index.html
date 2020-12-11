@@ -42,26 +42,45 @@
     <h2>Sign Out</h2>
     <button type="submit" id="sign-out">Sign Out</button>
 
-
-    <div id=board>
+<div id=board>
       <div class='row'>
-        <div class='col-2 box' id='0'></div>
-        <div class='col-2 box' id='1'></div>
-        <div class='col-2 box' id='2'></div>
+        <p class='col-2 box' id='0'></p>
+        <p class='col-2 box' id='1'></p>
+        <p class='col-2 box' id='2'></p>
       </div>
       <div class='row'>
-        <div class='col-2 box' id='3'></div>
-        <div class='col-2 box' id='4'></div>
-        <div class='col-2 box' id='5'></div>
+        <p class='col-2 box' id='3'></p>
+        <p class='col-2 box' id='4'></p>
+        <p class='col-2 box' id='5'></p>
       </div>
       <div class='row'>
-        <div class='col-2 box' id='6'></div>
-        <div class='col-2 box' id='7'></div>
-        <div class='col-2 box' id='8'></div>
+        <p class='col-2 box' id='6'></p>
+        <p class='col-2 box' id='7'></p>
+        <p class='col-2 box' id='8'></p>
       </div>
     </div>
   <button type="button" name="game-start" id="game-start">Game-Start!</button>
+  <button type="button" name="restart" id="restart">New-Game-Start!</button>
   <p id='game-status'></p>
+    <!-- Bootstrap Modal Code -->
+    <div class="modal fade" id="gameEndModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gameOverModalTitle">Game Over!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

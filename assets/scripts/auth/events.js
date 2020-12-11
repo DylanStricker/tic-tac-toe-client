@@ -1,6 +1,8 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('./../store')
+store.turn = false
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -45,6 +47,7 @@ const onSignOut = function (event) {
 }
 
 const onGameStart = function (event) {
+  store.winStatus = false
   event.preventDefault()
   console.log('GS!')
   api.gameStart()
@@ -52,10 +55,28 @@ const onGameStart = function (event) {
     .catch(ui.onGameError)
 }
 
+const playTurn = function (event) {
+  console.log('turn', store.turn)
+  const boardPositionId = event.target.id // grab ID
+  event.target.dataset.index = boardPositionId
+  store.pos = event.target
+  console.log(store.gameboard.game.cells)
+  if (store.gameboard.game.cells[boardPositionId] === '') {
+    api.playTurn(event.target)
+      .then(ui.onTurnMade)
+      .catch(ui.onGameError)
+  } else {
+    console.log('no')
+  }// | 0 | 1 | 2 |
+} // | 3 | 4 | 5 |
+// | 6 | 7 | 8 |
+
 module.exports = {
   onSignUp,
   onSignIn,
   onPChange,
   onSignOut,
-  onGameStart
+  onGameStart,
+  playTurn
+
 }
