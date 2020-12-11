@@ -2,7 +2,6 @@ const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('./../store')
-store.turn = false
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -45,11 +44,19 @@ const onSignOut = function (event) {
     .then(ui.onSignOutSuccess)
     .catch(ui.onError)
 }
-
+const gameClearOut = function () { // set all values set during the game to be empty or base
+  store.turn = false
+  store.gameboard = null
+  store.pos = null
+  store.overStatus = false
+  store.totalTurn = 0
+  store.winner = null
+  $('.box').text('')
+}
 const onGameStart = function (event) {
-  store.winStatus = false
   event.preventDefault()
   console.log('GS!')
+  gameClearOut()
   api.gameStart()
     .then(ui.onGameStartSuccess)
     .catch(ui.onGameError)
@@ -58,18 +65,19 @@ const onGameStart = function (event) {
 const playTurn = function (event) {
   console.log('turn', store.turn)
   const boardPositionId = event.target.id // grab ID
-  event.target.dataset.index = boardPositionId
-  store.pos = event.target
+  event.target.dataset.index = boardPositionId // store the clicked square's id
+  store.pos = event.target // store the clicked tile WITH saved board id seperate
+  console.log(store.pos, 'store.pos')
   console.log(store.gameboard.game.cells)
-  if (store.gameboard.game.cells[boardPositionId] === '') {
+  if (store.gameboard.game.cells[boardPositionId] === '' && store.overStatus !== true) { // is the square empty? is the game over?
+    store.totalTurn++ // increase turns played
     api.playTurn(event.target)
       .then(ui.onTurnMade)
       .catch(ui.onGameError)
-  } else {
+  } else { // dont allow a move
     console.log('no')
-  }// | 0 | 1 | 2 |
-} // | 3 | 4 | 5 |
-// | 6 | 7 | 8 |
+  }
+}
 
 module.exports = {
   onSignUp,

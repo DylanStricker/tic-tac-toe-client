@@ -10,7 +10,7 @@ const events = require('./auth/events')
 $(() => {
   $('#sign-up').on('submit', events.onSignUp)
   $('#sign-in').on('submit', events.onSignIn)
-  //  $('#pass-change').on('submit', events.onPChange)
+  $('#pass-change').on('submit', events.onPChange)
   $('#sign-out').on('click', events.onSignOut)
   $('#restart').on('click', events.onGameStart)
   $('.col-2').on('click', events.playTurn)

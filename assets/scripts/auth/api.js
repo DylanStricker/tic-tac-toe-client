@@ -67,10 +67,10 @@ const playTurn = function (target, move) {
         cell: {
           index: target.dataset.index,
           value: function () {
-            if (store.turn === false) {
-              return 'x'
+            if (store.turn === false) { // is it x's turn?
+              return 'x' // yes pass x
             } else {
-              return 'o'
+              return 'o' // no pass o
             }
           }
         },
@@ -97,16 +97,16 @@ const gameOver = function () {
     data: {
       game: {
         cell: {
-          index: 1,
-          value: 'x'
-        }
+          index: 1, // garbage values so it passes the api handler
+          value: 'x' // shouldn't ever be used so it doesnt matter as long
+        } // as they're accepted.
       },
 
-      over: function () {
-        if (store.overStatus === false) {
-          return store.overStatus
+      over: function () { // check if game is over.
+        if (store.overStatus === false) { // is game over?
+          return store.overStatus // no keep playing.
         } else {
-          return store.overStatus
+          return store.overStatus // not false so it is over, stop game.
         }
       }
     },

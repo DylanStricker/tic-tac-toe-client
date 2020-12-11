@@ -49,14 +49,14 @@ const onError = function (error) {
 
 const onGameStartSuccess = function (responseData) {
   console.log(responseData)
-  store.gameboard = responseData
+  store.gameboard = responseData // grab the new gameboard
   console.log(store.gameboard)
   $('#board').show()
 }
 
 const onGameWon = function () {
-  $('#gameEndModal').modal('show')
   $('.modal-body').text(`${store.winner} wins the game!`)
+  $('#gameEndModal').modal('show') // game end pop-up
 }
 const onTieGame = function () {
   $('.modal-body').text("It's a tie!")
@@ -64,25 +64,25 @@ const onTieGame = function () {
 }
 
 const onTurnMade = function (responseData) {
-  console.log('OTM', responseData) // logs the board data
-  store.gameboard = responseData
-  console.log('OTM', store.pos) // clicked spot
-  const boardSpot = store.pos
-  if (store.turn === false) {
-    $(boardSpot).text(responseData.game.cells[store.pos.dataset.index])
+  console.log('OTM', responseData) // logs the new board data
+  store.gameboard = responseData // save the updated gameboard from api into a variable
+  console.log('OTM', store.pos) // clicked tile spot
+  const boardSpot = store.pos // save the clicked spot into a variable
+  if (store.turn === false) { // is it x or o's turn?
+    $(boardSpot).text(responseData.game.cells[store.pos.dataset.index]) // x goes in
   } else {
-    $(boardSpot).text(responseData.game.cells[store.pos.dataset.index])
+    $(boardSpot).text(responseData.game.cells[store.pos.dataset.index]) // o goes in
   }
-  store.turn = !store.turn
-  if (((store.gameboard.game.cells[0] === store.gameboard.game.cells[1]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[2]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[3] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[3] === store.gameboard.game.cells[5]) && (store.gameboard.game.cells[3] !== '')) || ((store.gameboard.game.cells[6] === store.gameboard.game.cells[7]) && (store.gameboard.game.cells[6] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[6] !== '')) || ((store.gameboard.game.cells[0] === store.gameboard.game.cells[3]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[6]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[1] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[1] === store.gameboard.game.cells[7]) && (store.gameboard.game.cells[1] !== '')) || ((store.gameboard.game.cells[2] === store.gameboard.game.cells[5]) && (store.gameboard.game.cells[2] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[2] !== '')) || ((store.gameboard.game.cells[0] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[2] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[2] === store.gameboard.game.cells[6]) && (store.gameboard.game.cells[2] !== ''))) {
-    store.winner = responseData.game.cells[store.pos.dataset.index].toUpperCase()
+  store.turn = !store.turn // set turn to opposite person's turn.
+  if (((store.gameboard.game.cells[0] === store.gameboard.game.cells[1]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[2]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[3] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[3] === store.gameboard.game.cells[5]) && (store.gameboard.game.cells[3] !== '')) || ((store.gameboard.game.cells[6] === store.gameboard.game.cells[7]) && (store.gameboard.game.cells[6] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[6] !== '')) || ((store.gameboard.game.cells[0] === store.gameboard.game.cells[3]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[6]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[1] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[1] === store.gameboard.game.cells[7]) && (store.gameboard.game.cells[1] !== '')) || ((store.gameboard.game.cells[2] === store.gameboard.game.cells[5]) && (store.gameboard.game.cells[2] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[2] !== '')) || ((store.gameboard.game.cells[0] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[0] === store.gameboard.game.cells[8]) && (store.gameboard.game.cells[0] !== '')) || ((store.gameboard.game.cells[2] === store.gameboard.game.cells[4]) && (store.gameboard.game.cells[2] === store.gameboard.game.cells[6]) && (store.gameboard.game.cells[2] !== ''))) { // check if a game is won.
+    store.winner = responseData.game.cells[store.pos.dataset.index].toUpperCase() // store the winner.
     console.log('wow, game over')
-    store.overStatus = true
+    store.overStatus = true // mark the game as ended (win end)
     api.gameOver()
       .then(onGameWon)
       .catch(onGameError)
-  } else if (store.totalTurn === 9) {
-    store.overStatus = true
+  } else if (store.totalTurn >= 9) { // check if 9 turns have been made.
+    store.overStatus = true // mark the game as ended (tie end)
     api.gameOver()
       .then(onTieGame)
       .catch(onGameError)
