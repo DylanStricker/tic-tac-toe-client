@@ -12,7 +12,7 @@ $(() => {
   $('#sign-in').on('submit', events.onSignIn)
   //  $('#pass-change').on('submit', events.onPChange)
   $('#sign-out').on('click', events.onSignOut)
-  $('#new-game-start').on('click', events.onGameStart)
+  $('#restart').on('click', events.onGameStart)
   $('.col-2').on('click', events.playTurn)
   $('.authenticated').hide()
   $('#board').hide()
