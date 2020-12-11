@@ -55,10 +55,12 @@ const gameClearOut = function () { // set all values set during the game to be e
 }
 const onGameStart = function (event) {
   event.preventDefault()
+
   console.log('GS!')
   gameClearOut()
   api.gameStart()
     .then(ui.onGameStartSuccess)
+    .then(gamesPlayed())
     .catch(ui.onGameError)
 }
 
@@ -78,13 +80,18 @@ const playTurn = function (event) {
     console.log('no')
   }
 }
-
+const gamesPlayed = function () {
+  api.gameCount()
+    .then(ui.onCountRequest)
+    .catch(ui.onError)
+}
 module.exports = {
   onSignUp,
   onSignIn,
   onPChange,
   onSignOut,
   onGameStart,
-  playTurn
+  playTurn,
+  gamesPlayed
 
 }

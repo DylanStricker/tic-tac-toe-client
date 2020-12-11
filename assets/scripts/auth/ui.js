@@ -13,13 +13,15 @@ const onSignInSuccess = function (responseData) {
   console.log('success!')
 
   store.user = responseData.user
-
   $('#current-status').text('Successfully signed in!')
   // hide unauthenticated
   $('.unauthenticated').hide()
   // show authenticated
   $('.authenticated').show()
   $('form').trigger('reset')
+  api.gameCount()
+    .then(onCountRequest)
+    .catch(onError)
 }
 
 const onPChangeSuccess = function () {
@@ -59,8 +61,13 @@ const onGameWon = function () {
   $('#gameEndModal').modal('show') // game end pop-up
 }
 const onTieGame = function () {
-  $('.modal-body').text("It's a tie!")
+  $('.modal-body').text('Cat Won!')
   $('#gameEndModal').modal('show')
+}
+const onCountRequest = function (responseData) {
+  console.log(responseData, 'OCR!!!!!!!')
+  store.games = responseData.games.length
+  $('#game-tally').text(`You've Started ${store.games} Games!`)
 }
 
 const onTurnMade = function (responseData) {
@@ -102,5 +109,6 @@ module.exports = {
   onSignOutSuccess,
   onGameStartSuccess,
   onGameError,
-  onTurnMade
+  onTurnMade,
+  onCountRequest
 }

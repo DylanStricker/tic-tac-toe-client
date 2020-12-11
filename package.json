@@ -43,6 +43,7 @@
     "postcss-loader": "^2.1.6",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
+    "tap": "^14.11.0",
     "time-grunt": "^2.0.0",
     "url-loader": "^1.0.1",
     "webpack": "^3.5.1",

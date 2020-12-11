@@ -38,7 +38,7 @@ const signOut = function () {
     }
   })
 }
-const gameStart = function (data) {
+const gameStart = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -115,7 +115,15 @@ const gameOver = function () {
     }
   })
 }
-
+const gameCount = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
 module.exports = {
   signUp,
   signIn,
@@ -123,5 +131,6 @@ module.exports = {
   signOut,
   gameStart,
   playTurn,
-  gameOver
+  gameOver,
+  gameCount
 }
