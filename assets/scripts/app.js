@@ -17,4 +17,5 @@ $(() => {
   $('.authenticated').hide()
   $('#board').hide()
   $('#gameEndModal').modal({ show: false })
+  $('#secret-password').hide()
 })
