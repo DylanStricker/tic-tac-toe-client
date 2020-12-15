@@ -6,6 +6,7 @@ const onSignUpSuccess = function (responseData) {
   // console.log('user data', responseData)
   // console.log('success!')
   $('#current-status').text('Successfully signed up!')
+  msgClearer('#current-status')
   $('form').trigger('reset')
 }
 const onSignInSuccess = function (responseData) {
@@ -14,6 +15,7 @@ const onSignInSuccess = function (responseData) {
 
   store.user = responseData.user
   $('#current-status').text('Successfully signed in!')
+  msgClearer('#current-status')
   // hide unauthenticated
   $('.unauthenticated').hide()
   // show authenticated
@@ -27,12 +29,14 @@ const onSignInSuccess = function (responseData) {
 const onPChangeSuccess = function () {
   // console.log('success!')
   $('#current-status').text('Password Changed!')
+  msgClearer('#current-status')
   $('form').trigger('reset')
 }
 
 const onSignOutSuccess = function () {
   // console.log('success!')
   $('#current-status').text('Signed Out!')
+  msgClearer('#current-status')
 
   $('.authenticated').hide()
   $('.unauthenticated').show()
@@ -43,9 +47,8 @@ const onSignOutSuccess = function () {
 }
 
 const onError = function (error) {
-  // console.log('your error is', error)
-  const errormsg  fuc==>   $('#current-status').text('error: ', error)
-  setTimeout($('#current-status').text(''), 6000)
+  $('#current-status').text('error: ' + error.responseJSON.message)
+  msgClearer('#current-status')
 }
 
 // gamers be like VVVVV
@@ -99,11 +102,13 @@ const onTurnMade = function (responseData) {
 
 const onGameError = function (error) {
   // // console.log('your error is', error)
-
-  $('#game-status').text('error: ', error)
-  setTimeout($('#game-status').text(''), 6000)
+  $('#game-status').text('error: ' + error.responseJSON.message)
+  msgClearer('#game-status')
 }
-
+function msgClearer (field) {
+  const statusmsgclear = () => $(field).text('')
+  setTimeout(statusmsgclear, 20000)
+}
 module.exports = {
   onError,
   onSignUpSuccess,
