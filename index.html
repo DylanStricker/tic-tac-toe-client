@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tic-Tac and -Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <h1>Tic tac toe rocks</h1>
+  <p id=current-status></p>
+  <p id=secret-password>Gondola@:D:D.com P: fug</p>
+  <div class="unauthenticated">
+    <h2>Sign Up!</h2>
+    <form id="sign-up">
+      <input type="text" name="credentials[email]" placeholder="Email">
+      <input type="password" name="credentials[password]" placeholder="Password">
+      <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+      <button type="submit">Sign Up</button>
+    </form>
+    <h2>Sign in!</h2>
+    <form id="sign-in">
+      <input type="text" name="credentials[email]" placeholder="Email">
+      <input type="password" name="credentials[password]" placeholder="Password">
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+  <div class="authenticated">
+    <h2>Need to change your password?</h2>
+    <form id="pass-change">
+      <input type="password" name="passwords[old]" placeholder="Old Password">
+      <input type="password" name="passwords[new]" placeholder="New Password">
+      <button type="submit">Change</button>
+    </form>
+    <h2>Sign Out</h2>
+    <button type="submit" id="sign-out">Sign Out</button>
+    <h2>Let's Game Gamers</h2>
+    <div id=board>
+      <div class='row'>
+        <p class='col-2 box' id='0'></p>
+        <p class='col-2 box' id='1'></p>
+        <p class='col-2 box' id='2'></p>
+      </div>
+      <div class='row'>
+        <p class='col-2 box' id='3'></p>
+        <p class='col-2 box' id='4'></p>
+        <p class='col-2 box' id='5'></p>
+      </div>
+      <div class='row'>
+        <p class='col-2 box' id='6'></p>
+        <p class='col-2 box' id='7'></p>
+        <p class='col-2 box' id='8'></p>
+      </div>
+    </div>
+  <button type="button" name="restart" id="restart">New-Game-Start!</button>
+  <p id='game-tally'></p>
+  <p id='game-status'></p>
+    <!-- Bootstrap Modal Code -->
+    <div class="modal fade" id="gameEndModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gameOverModalTitle">Game Over!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
