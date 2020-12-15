@@ -19,7 +19,7 @@ end of day 4.
  * General Assembly API interface
 
 ### API Documentation #
-[tic-tac-toe A P I]https://git.generalassemb.ly/ga-wdi-boston/game-project-api
+[tic-tac-toe A P I](https://git.generalassemb.ly/ga-wdi-boston/game-project-api)
 
 ### Planning, Method, Organization #
  1. Created User Stories and Wire frames for outlining process.
@@ -45,9 +45,10 @@ end of day 4.
 
 ### Wireframes #
 Pretty ugly but they do the job.
-![WireFrame1]https://media.discordapp.net/attachments/476492229863800836/788430238744969287/WireFrame1.jpg?width=602&height=468
 
-![WireFrame2]https://media.discordapp.net/attachments/476492229863800836/788430240787070986/WireFrame2.jpg?width=627&height=468
+![WireFrame1](https://media.discordapp.net/attachments/476492229863800836/788430238744969287/WireFrame1.jpg?width=602&height=468)
+
+![WireFrame2](https://media.discordapp.net/attachments/476492229863800836/788430240787070986/WireFrame2.jpg?width=627&height=468)
 
 ### Future Plans, Problems to solve #
 
