@@ -14,6 +14,7 @@ $(() => {
   $('#sign-out').on('click', events.onSignOut)
   $('#restart').on('click', events.onGameStart)
   $('.col-2').on('click', events.playTurn)
+  $('#switch-player').on('click', events.switchPlayer)
   $('.authenticated').hide()
   $('#board').hide()
   $('#gameEndModal').modal({ show: false })

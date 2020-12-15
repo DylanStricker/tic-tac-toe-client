@@ -19,7 +19,7 @@ const signIn = function (data) {
 }
 
 const pChange = function (data) {
-  console.log(store.user)
+  // console.log(store.user)
   return $.ajax({
     url: config.apiUrl + '/change-password/',
     method: 'PATCH',
@@ -48,17 +48,9 @@ const gameStart = function () {
     }
   })
 }
-// typical format
-// {"game": {
-//      "cells":["","","","","","","","",""],
-//      "over":false,
-//      "_id":"5fd2393817c7750017597c7b",
-//      "owner":"5fd2390917c7750017597c76",
-//      "createdAt":"2020-12-10T15:05:28.737Z",
-//      "updatedAt":"2020-12-10T15:05:28.737Z",
-//      "__v":0}}
+
 const playTurn = function (target, move) {
-  console.log(store.gameboard)
+  // console.log(store.gameboard)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.gameboard.game._id,
     method: 'PATCH',
@@ -90,7 +82,7 @@ const playTurn = function (target, move) {
   })
 }
 const gameOver = function () {
-  console.log(store.gameboard)
+  // console.log(store.gameboard)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.gameboard.game._id,
     method: 'PATCH',

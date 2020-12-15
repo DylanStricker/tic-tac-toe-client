@@ -42,7 +42,7 @@
     <h2>Sign Out</h2>
     <button type="submit" id="sign-out">Sign Out</button>
 
-<div id=board>
+    <div id=board>
       <div class='row'>
         <p class='col-2 box' id='0'></p>
         <p class='col-2 box' id='1'></p>
@@ -59,29 +59,33 @@
         <p class='col-2 box' id='8'></p>
       </div>
     </div>
-  <button type="button" name="restart" id="restart">New-Game-Start!</button>
-  <p id='game-tally'></p>
-  <p id='game-status'></p>
-    <!-- Bootstrap Modal Code -->
-    <div class="modal fade" id="gameEndModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="gameOverModalTitle">Game Over!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" name="restart" id="restart">New-Game-Start!</button>
+    <p id='game-status'></p>
+    <p id='current-player'>Current Player is X</p>
+    <div id='game-started'>
+      <button type="button" name="switch-player" id="switch-player">Change Player!</button>
+      <p id='game-tally'></p>
+    </div>
+        <!-- Bootstrap Modal Code -->
+        <div class="modal fade" id="gameEndModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="gameOverModalTitle">Game Over!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </div>
-  </div>
 </body>
 
 </html>

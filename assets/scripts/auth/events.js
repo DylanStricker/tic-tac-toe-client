@@ -5,7 +5,7 @@ const store = require('./../store')
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('SU clicked')
+  // console.log('SU clicked')
 
   const form = event.target
 
@@ -17,7 +17,7 @@ const onSignUp = function (event) {
 }
 const onSignIn = function (event) {
   event.preventDefault()
-  console.log('SI clicked')
+  // console.log('SI clicked')
 
   const form = event.target
   const data = getFormFields(form)
@@ -28,7 +28,7 @@ const onSignIn = function (event) {
 }
 const onPChange = function (event) {
   event.preventDefault()
-  console.log('PC clicked')
+  // console.log('PC clicked')
   const form = event.target
 
   const data = getFormFields(form)
@@ -39,7 +39,8 @@ const onPChange = function (event) {
 }
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('SO clicked')
+  store.gamestatus = true
+  // console.log('SO clicked')
   api.signOut()
     .then(ui.onSignOutSuccess)
     .catch(ui.onError)
@@ -55,29 +56,39 @@ const gameClearOut = function () { // set all values set during the game to be e
 }
 const onGameStart = function (event) {
   event.preventDefault()
-
-  console.log('GS!')
+  store.gamestatus = true
+  // console.log('GS!')
   gameClearOut()
   api.gameStart()
     .then(ui.onGameStartSuccess)
     .then(gamesPlayed())
     .catch(ui.onGameError)
 }
-
+const switchPlayer = function (event) {
+  event.preventDefault()
+  store.turn = !store.turn
+  ui.onPlayerChange()
+}
 const playTurn = function (event) {
-  console.log('turn', store.turn)
-  const boardPositionId = event.target.id // grab ID
-  event.target.dataset.index = boardPositionId // store the clicked square's id
-  store.pos = event.target // store the clicked tile WITH saved board id seperate
-  console.log(store.pos, 'store.pos')
-  console.log(store.gameboard.game.cells)
-  if (store.gameboard.game.cells[boardPositionId] === '' && store.overStatus !== true) { // is the square empty? is the game over?
-    store.totalTurn++ // increase turns played
-    api.playTurn(event.target)
-      .then(ui.onTurnMade)
-      .catch(ui.onGameError)
-  } else { // dont allow a move
-    console.log('no')
+  // console.log('turn', store.turn)
+  if (store.gamestatus === true) {
+    $('#game-started').hide()
+    const boardPositionId = event.target.id // grab ID
+    event.target.dataset.index = boardPositionId // store the clicked square's id
+    store.pos = event.target // store the clicked tile WITH saved board id seperate
+    // console.log(store.pos, 'store.pos')
+    // console.log(store.gameboard.game.cells)
+    if (store.gameboard.game.cells[boardPositionId] === '' && store.overStatus !== true) { // is the square empty? is the game over?
+      store.totalTurn++ // increase turns played
+      api.playTurn(event.target)
+        .then(ui.onTurnMade)
+        .catch(ui.onGameError)
+    } else { // dont allow a move
+      // console.log('no')
+      $('#game-status').text('That spot is taken already')
+    }
+  } else {
+    $('#game-status').text("The game hasn't started yet!")
   }
 }
 const gamesPlayed = function () {
@@ -92,6 +103,7 @@ module.exports = {
   onSignOut,
   onGameStart,
   playTurn,
-  gamesPlayed
+  gamesPlayed,
+  switchPlayer
 
 }
